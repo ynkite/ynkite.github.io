@@ -13,6 +13,8 @@ from urllib.parse import unquote
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = ['index.html'] + sorted(glob.glob('projects/*.html'))
 SKIP_DIRS = ('프로젝트 사진', '_backup', '_workspace', '__pycache__')
+# 어느 HTML도 가리키지 않지만 올려야 하는 것 — 본편 PDF가 이 주소로 링크한다
+EXTRA = ('assets/포트폴리오_정상연_산출물.pdf',)
 ASSET_EXT = r'png|jpg|jpeg|svg|mp4|pdf|webp|ico'
 
 
@@ -54,7 +56,7 @@ def present():
 
 def plan():
     """(올릴 파일, 빼는 파일) 을 돌려준다."""
-    ref = referenced()
+    ref = referenced() | set(EXTRA)
     have = present()
     keep, drop = set(['index.html']), set()
     for p in have:

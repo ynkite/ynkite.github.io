@@ -9,3 +9,8 @@ tools/__pycache__/
 
 # 렌더 확인용 임시 파일
 _t*.html
+
+# PDF 빌드 부산물
+_pdf.html
+_pdf_docs.html
+_pdfimg/
